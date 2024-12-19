@@ -1,1 +1,81 @@
-afbg moment
+<style>
+    .wds-button {
+        display: inline-flex;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        justify-content: center;
+        letter-spacing: .15px;
+        line-height: 16px;
+        margin: 0;
+        min-height: 18px;
+        padding: 7px 18px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition-duration: .3s;
+        transition-property: background-color, border-color, color;
+        vertical-align: top;
+        border-radius: 3px;
+    }
+
+    .wds-button {
+        border: 1px black solid !important;
+    }
+
+    .button {
+        position: relative;
+        /* left: 400px; */
+        background-image: linear-gradient(to left, forestgreen, lightgreen);
+        z-index: 1;
+    }
+
+    .button::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to left, lightgreen, forestgreen);
+        z-index: -1;
+        transition: opacity 0.5s linear;
+        opacity: 0;
+        border-radius: 2px;
+    }
+
+    .button:hover::before {
+        opacity: 1;
+    }
+
+    .grid {
+        width: fit-content;
+    }
+
+    .grid > p {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .grid > p > .wds-button {
+        flex: 1 1 calc(50% - 16px);
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+</style>
+<body>
+    afbg moment<br>
+    <div class="grid">
+        <p>
+            <span class="wds-button button">[[:Category:Weapons|Weapons]]</span>
+            <span class="wds-button button">[[:Category:Dev Weapons|Dev Weapons]]</span>
+            
+            <span class="wds-button button">[[Techniques]]</span>
+            <span class="wds-button button">[[Mechanics]]</span>
+        
+            <span class="wds-button button">[[Move Types]]</span>
+            <span class="wds-button button">[[Credits]]</span>
+        </p>
+    </div>
+</body>
