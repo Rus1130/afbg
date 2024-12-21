@@ -68,6 +68,38 @@
         justify-content: center;
     }
 
+    /* ==================== */
+
+    .audio-player {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-image: linear-gradient(to left, forestgreen, lightgreen);
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 300px;
+    }
+    .audio-player > button {
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        font-size: 25px;
+        padding: 0;
+        font-family: monospace;
+    }
+
+    .audio-player > button:hover {
+        background: #0056b3;
+    }
+    .audio-player > input[type="range"] {
+        flex: 1;
+    }
+
 </style>
 <body>
     afbg moment<br>
@@ -83,4 +115,163 @@
             <span class="wds-button button">[[Credits]]</span>
         </p>
     </div>
+    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/f/f8/TitanEdgeTheme.mp3"></div>
+    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/9/99/Water.mp3"></div>
+    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/7/7b/Nebula.mp3"></div>
+
+    <!-- <div class="audio-player">
+        <button id="audio-player-play-pause">Play</button>
+        <input type="range" id="audio-player-seek-bar" value="0" step="0.1">
+        <span id="audio-player-current-time">0:00</span> / <span id="audio-player-duration">0:00</span>
+    </div>
+    <audio id="audio-player-audio" src="https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/f/f8/TitanEdgeTheme.mp3"></audio> -->
 </body>
+<script>
+    var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
+    audioPlayers.forEach((i) => {
+        var audioPlayer = document.createElement('div');
+        audioPlayer.classList.add('audio-player');
+
+        var audio = document.createElement('audio');
+        audio.src = i.getAttribute('id').replace('AudioTemplate-', '');
+
+        let playPauseBtn = document.createElement('button');
+        let seekBar = document.createElement('input');
+        let timeDisplay = document.createElement('span');
+
+        seekBar.type = 'range';
+        seekBar.value = 0;
+
+        playPauseBtn.innerHTML = '<span style="position: relative; top: -3.5px;">⏵</span>';
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = '<span style="position: relative; top: -4px;">⏸</span>';
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<span style="position: relative; top: -3.5px;">⏵</span>';
+            }
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            seekBar.value = audio.currentTime;
+            timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            timeDisplay.textContent = '0:00 / '+formatTime(audio.duration);
+            seekBar.max = audio.duration;
+        });
+
+        seekBar.addEventListener('input', () => {
+            audio.currentTime = seekBar.value;
+        });
+
+        audioPlayer.appendChild(playPauseBtn);
+        audioPlayer.appendChild(seekBar);
+        audioPlayer.appendChild(timeDisplay);
+        audioPlayer.appendChild(audio);
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${minutes}:${secs}`;
+        }
+
+        i.appendChild(audioPlayer);
+    })
+    // for(var i = 0; i < audioPlayers.length; i++){
+    //     var audioPlayer = audioPlayers[i];
+    //     var audio = document.createElement('audio');
+    //     audio.src = audioPlayer.getAttribute('src');
+
+    //     var playPauseBtn = document.createElement('button');
+    //     var seekBar = document.createElement('input');
+    //     var currentTimeDisplay = document.createElement('span');
+    //     var durationDisplay = document.createElement('span');
+
+    //     seekBar.type = 'range';
+    //     seekBar.value = 0;
+
+    //     playPauseBtn.textContent = 'Play';
+    //     playPauseBtn.addEventListener('click', () => {
+    //         if (audio.paused) {
+    //             audio.play();
+    //             playPauseBtn.textContent = 'Pause';
+    //         } else {
+    //             audio.pause();
+    //             playPauseBtn.textContent = 'Play';
+    //         }
+    //     });
+
+    //     audio.addEventListener('timeupdate', () => {
+    //         seekBar.value = audio.currentTime;
+    //         durationDisplay.textContent = '';
+    //         currentTimeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+    //         console.log(formatTime(audio.duration), formatTime(audio.currentTime))
+    //     });
+
+    //     audio.addEventListener('loadedmetadata', () => {
+    //         durationDisplay.textContent = '0:00 / '+formatTime(audio.duration);
+    //         seekBar.max = audio.duration;
+    //         console.log('loadedmetadata')
+    //     });
+
+    //     seekBar.addEventListener('input', () => {
+    //         audio.currentTime = seekBar.value;
+    //     });
+
+    //     audioPlayer.appendChild(playPauseBtn);
+    //     audioPlayer.appendChild(seekBar);
+    //     audioPlayer.appendChild(currentTimeDisplay);
+    //     audioPlayer.appendChild(durationDisplay);
+    //     audioPlayer.appendChild(audio);
+
+    //     function formatTime(seconds) {
+    //         const minutes = Math.floor(seconds / 60);
+    //         const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+    //         return `${minutes}:${secs}`;
+    //     }
+    // }
+    // const audio = document.getElementById('audio-player-audio');
+    // const playPauseBtn = document.getElementById('audio-player-play-pause');
+    // const seekBar = document.getElementById('audio-player-seek-bar');
+    // const currentTimeDisplay = document.getElementById('audio-player-current-time');
+    // const durationDisplay = document.getElementById('audio-player-duration');
+    
+    // // Play or Pause audio
+    // playPauseBtn.addEventListener('click', () => {
+    //     if (audio.paused) {
+    //         audio.play();
+    //         playPauseBtn.textContent = 'Pause';
+    //     } else {
+    //         audio.pause();
+    //         playPauseBtn.textContent = 'Play';
+    //     }
+    // });
+    
+    // // Update seek bar and time display
+    // audio.addEventListener('timeupdate', () => {
+    //     seekBar.value = audio.currentTime;
+    //     currentTimeDisplay.textContent = formatTime(audio.currentTime);
+    // });
+    
+    // // Update duration and seek bar max value
+    // audio.addEventListener('loadedmetadata', () => {
+    //     durationDisplay.textContent = formatTime(audio.duration);
+    //     seekBar.max = audio.duration;
+    // });
+    
+    // // Seek audio
+    // seekBar.addEventListener('input', () => {
+    //     audio.currentTime = seekBar.value;
+    // });
+    
+    // // Format time in mm:ss
+    // function formatTime(seconds) {
+    //     const minutes = Math.floor(seconds / 60);
+    //     const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+    //     return `${minutes}:${secs}`;
+    // }
+    </script>
