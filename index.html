@@ -150,9 +150,9 @@
             <span class="wds-button button">[[Credits]]</span>
         </p>
     </div>
-    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/f/f8/TitanEdgeTheme.mp3"></div>
-    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/9/99/Water.mp3"></div>
-    <div id="AudioTemplate-https://static.wikia.nocookie.net/aetherfall-battlegrounds-rblx/images/7/7b/Nebula.mp3"></div>
+    <div id="AudioTemplate-titansedge"></div>
+    <div id="AudioTemplate-waterbrawler"></div>
+    <div id="AudioTemplate-nebula"></div>
 
     <!-- <div class="audio-player">
         <button id="audio-player-play-pause">Play</button>
@@ -163,45 +163,45 @@
 </body>
 <script>
     var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
-    audioPlayers.forEach((i) => {
+    audioPlayers.forEach(function(i){
         var audioPlayer = document.createElement('div');
         audioPlayer.classList.add('audio-player');
 
         var audio = document.createElement('audio');
-        audio.src = i.getAttribute('id').replace('AudioTemplate-', '');
+        audio.src = 'https://rus1130.github.io/afbg/audio/' + i.getAttribute('id').replace('AudioTemplate-', '') + ".mp3";
 
-        let playPauseBtn = document.createElement('button');
-        let seekBar = document.createElement('input');
-        let timeDisplay = document.createElement('span');
+        var playPauseBtn = document.createElement('button');
+        var seekBar = document.createElement('input');
+        var timeDisplay = document.createElement('span');
 
         seekBar.type = 'range';
         seekBar.value = 0;
 
         timeDisplay.classList.add("time-display");
 
-        playPauseBtn.innerHTML = '<span><img class="play" src="./audio/play.png"/></span>';
+        playPauseBtn.innerHTML = '<span><img class="play" src="https://rus1130.github.io/afbg/audio/play.png"/></span>';
 
-        playPauseBtn.addEventListener('click', () => {
+        playPauseBtn.addEventListener('click', function(){
             if (audio.paused) {
                 audio.play();
-                playPauseBtn.innerHTML = '<span><img class="pause" src="./audio/pause.png"/></span>';
+                playPauseBtn.innerHTML = '<span><img class="pause" src="https://rus1130.github.io/afbg/audio/pause.png"/></span>';
             } else {
                 audio.pause();
-                playPauseBtn.innerHTML = '<span><img class="play" src="./audio/play.png"/></span>';
+                playPauseBtn.innerHTML = '<span><img class="play" src="https://rus1130.github.io/afbg/audio/play.png"/></span>';
             }
         });
 
-        audio.addEventListener('timeupdate', () => {
+        audio.addEventListener('timeupdate', function(){
             seekBar.value = audio.currentTime;
             timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
         });
 
-        audio.addEventListener('loadedmetadata', () => {
+        audio.addEventListener('loadedmetadata', function(){
             timeDisplay.textContent = '0:00 / '+formatTime(audio.duration);
             seekBar.max = audio.duration;
         });
 
-        seekBar.addEventListener('input', () => {
+        seekBar.addEventListener('input',function(){
             audio.currentTime = seekBar.value;
         });
 
@@ -211,9 +211,9 @@
         audioPlayer.appendChild(audio);
 
         function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-            return `${minutes}:${secs}`;
+            var minutes = Math.floor(seconds / 60);
+            var secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return minutes + ":" + secs;
         }
 
         i.appendChild(audioPlayer);
