@@ -88,11 +88,9 @@
         height: 35px;
         padding: 0;
         border-radius: 30px;
-
         cursor: pointer;
         font-family: monospace;
     }
-
     .audio-player > button:hover {
         background: rgba(0, 0, 0, 0.1);
     }
@@ -118,7 +116,6 @@
         position:relative;
         top: -6px;
     }
-
     .audio-player > .time-display {
         padding-right: 10px;  
     }
@@ -133,6 +130,22 @@
         /* left: 2px; */
         width: 40%;
         height: 80%;
+    }
+    .audio-loading {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-image: linear-gradient(to right, lightgreen, forestgreen);
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 30px;
+        width: 300px;
+        margin-left: 23px;
+        margin-top: -12px;
+    }
+
+    .audio-loading::before {
+        content: "loading...";
     }
 
 </style>
@@ -163,12 +176,14 @@
 </body>
 <script>
     var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
-    audioPlayers.forEach(function(i){
+    audioPlayers.forEach(function(element){
         var audioPlayer = document.createElement('div');
         audioPlayer.classList.add('audio-player');
+        element.classList.remove("audio-loading");
 
         var audio = document.createElement('audio');
-        audio.src = 'https://rus1130.github.io/afbg/audio/' + i.getAttribute('id').replace('AudioTemplate-', '') + ".mp3";
+        audio.src = 'https://rus1130.github.io/afbg/audio/' + element.getAttribute('id').replace('AudioTemplate-', '') + ".mp3";
+        audio.volume = 0.8;
 
         var playPauseBtn = document.createElement('button');
         var seekBar = document.createElement('input');
@@ -216,7 +231,7 @@
             return minutes + ":" + secs;
         }
 
-        i.appendChild(audioPlayer);
+        element.appendChild(audioPlayer);
     })
     // for(var i = 0; i < audioPlayers.length; i++){
     //     var audioPlayer = audioPlayers[i];
