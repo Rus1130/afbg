@@ -18,17 +18,44 @@
         border-radius: 3px;
     }
 
+    :root {
+        --button-gradient: linear-gradient(to right, lightblue, white);
+        --button-gradient-hover: linear-gradient(to right, white, lightblue);
+        
+        --audio-player-gradient: linear-gradient(to right, lightgreen, forestgreen);
+        --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
+    }
+
+    li:not(.toclevel-1) > ul:has(li) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    div#recent-images-module {
+        display: none;
+    }
+    span > a {
+        text-decoration: none !important;
+    }
+    audio {
+        width: 360px !important;
+    }
+
+    .video {
+    width: 50%;
+    height: auto;
+    max-width: 100%;
+    }
+
     .wds-button {
         border: 1px black solid !important;
     }
 
     .button {
         position: relative;
-        /* left: 400px; */
-        background-image: linear-gradient(to left, forestgreen, lightgreen);
+        background-image: var(--button-gradient);
         z-index: 1;
+        padding: 0;
     }
-
     .button::before {
         position: absolute;
         content: '';
@@ -36,27 +63,43 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-image: linear-gradient(to left, lightgreen, forestgreen);
+        background-image: var(--button-gradient-hover);
         z-index: -1;
         transition: opacity 0.5s linear;
         opacity: 0;
         border-radius: 2px;
     }
-
     .button:hover::before {
         opacity: 1;
+    }
+    span.button > a {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+    }
+
+
+    .video-loading {
+        font-family: rubik, helvetica, arial, sans-serif;
+        width: 366.63px;
+        height: 202.01px;
+        border: 1px solid black;
+    }
+    .video-loading::before {
+        position: absolute;
+        left: calc(366.63px / 2 - 11px);
+        content: "\000A\000A\000AVideo Loading...";
+        white-space: pre;
     }
 
     .grid {
         width: fit-content;
     }
-
     .grid > p {
         display: flex;
         flex-wrap: wrap;
         gap: 16px;
     }
-
     .grid > p > .wds-button {
         flex: 1 1 calc(50% - 16px);
         box-sizing: border-box;
@@ -68,17 +111,17 @@
         justify-content: center;
     }
 
-    /* ==================== */
-
     .audio-player {
         display: flex;
         align-items: center;
         gap: 5px;
-        background-image: linear-gradient(to right, lightgreen, forestgreen);
+        background-image: var(--audio-player-gradient);
         padding: 5px;
         border: 1px solid black;
         border-radius: 30px;
         width: 300px;
+        margin-left: 23px;
+        margin-top: -12px;
     }
     .audio-player > button {
         background: transparent;
@@ -133,11 +176,12 @@
     .audio-player > span {
         font-family: monospace;
     }
+
     .audio-loading {
         display: flex;
         align-items: center;
         gap: 5px;
-        background-image: linear-gradient(to right, lightgreen, forestgreen);
+        background-image: var(--audio-player-track-gradient);
         padding: 5px;
         border: 1px solid black;
         border-radius: 30px;
@@ -149,19 +193,32 @@
         content: "loading...";
     }
 
+
 </style>
 <body>
     afbg moment<br>
-    <div class="grid">
+    <div class="grid center">
         <p>
-            <span class="wds-button button">[[:Category:Weapons|Weapons]]</span>
-            <span class="wds-button button">[[:Category:Dev Weapons|Dev Weapons]]</span>
+            <span class="wds-button button">
+                <a href="google.com">[[:Category:Weapons|Weapons]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[:Category:Dev Weapons|Dev Weapons]]</a>
+            </span>
             
-            <span class="wds-button button">[[Techniques]]</span>
-            <span class="wds-button button">[[Mechanics]]</span>
+            <span class="wds-button button">
+                <a href="google.com">[[Techniques]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[Mechanics]]</a>
+            </span>
         
-            <span class="wds-button button">[[Move Types]]</span>
-            <span class="wds-button button">[[Credits]]</span>
+            <span class="wds-button button">
+                <a href="google.com">[[Move Types]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[Credits]]</a>
+            </span>
         </p>
     </div>
     <div id="AudioTemplate-titansedge"></div>
