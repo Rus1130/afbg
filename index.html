@@ -166,6 +166,7 @@
     <div id="AudioTemplate-titansedge"></div>
     <div id="AudioTemplate-waterbrawler"></div>
     <div id="AudioTemplate-nebula"></div>
+    <div id="AudioTemplate-deliberately wrong"></div>
 
     <!-- <div class="audio-player">
         <button id="audio-player-play-pause">Play</button>
@@ -215,6 +216,10 @@
             timeDisplay.textContent = '0:00 / '+formatTime(audio.duration);
             seekBar.max = audio.duration;
         });
+
+        audio.addEventListener("onerror", function(){
+            element.innerHTML = "fucked";
+        }); 
 
         seekBar.addEventListener('input',function(){
             audio.currentTime = seekBar.value;
