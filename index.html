@@ -17,13 +17,12 @@
         vertical-align: top;
         border-radius: 3px;
     }
-
     :root {
-        --button-gradient: linear-gradient(to right, lightblue, white);
-        --button-gradient-hover: linear-gradient(to right, white, lightblue);
+        --button-gradient: linear-gradient(to right, deepskyblue, aqua);
+        --button-gradient-hover: linear-gradient(to right, aqua, deepskyblue);
         
-        --audio-player-gradient: linear-gradient(to right, lightgreen, forestgreen);
-        --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
+        --audio-player-gradient: linear-gradient(to right, #00bfff, #00ffff);
+        --audio-player-track-gradient: linear-gradient(to right, #0080FF, #33CCFF);
     }
 
     li:not(.toclevel-1) > ul:has(li) {
@@ -52,6 +51,7 @@
 
     .button {
         position: relative;
+        border: lightblue;
         background-image: var(--button-gradient);
         z-index: 1;
         padding: 0;
@@ -142,9 +142,8 @@
     }
     .audio-player > input[type="range"]::-webkit-slider-runnable-track {
         height: 5px; 
-        background: linear-gradient(to right, #21D821, #A8E063);
+        background: var(--audio-player-track-gradient);
         border-radius: 5px;
-        outline: 1px solid #99932a;
     }
     .audio-player > input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -152,8 +151,6 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background-color: #ff0000;
-        border: 2px solid #ffffff;
         cursor: pointer;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
         position:relative;
@@ -181,7 +178,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        background-image: var(--audio-player-track-gradient);
+        background-image: var(--audio-player-gradient);
         padding: 5px;
         border: 1px solid black;
         border-radius: 30px;
