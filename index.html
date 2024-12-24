@@ -222,6 +222,7 @@
     <div id="AudioTemplate-waterbrawler"></div>
     <div id="AudioTemplate-nebula"></div>
     <div id="AudioTemplate-deliberately wrong"></div>
+    <div id="VideoTemplate-mod/shield-equip"></div>
 </body>
 <script>
     var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
@@ -288,97 +289,30 @@
 
         element.appendChild(audioPlayer);
     })
-    // for(var i = 0; i < audioPlayers.length; i++){
-    //     var audioPlayer = audioPlayers[i];
-    //     var audio = document.createElement('audio');
-    //     audio.src = audioPlayer.getAttribute('src');
-
-    //     var playPauseBtn = document.createElement('button');
-    //     var seekBar = document.createElement('input');
-    //     var currentTimeDisplay = document.createElement('span');
-    //     var durationDisplay = document.createElement('span');
-
-    //     seekBar.type = 'range';
-    //     seekBar.value = 0;
-
-    //     playPauseBtn.textContent = 'Play';
-    //     playPauseBtn.addEventListener('click', () => {
-    //         if (audio.paused) {
-    //             audio.play();
-    //             playPauseBtn.textContent = 'Pause';
-    //         } else {
-    //             audio.pause();
-    //             playPauseBtn.textContent = 'Play';
-    //         }
-    //     });
-
-    //     audio.addEventListener('timeupdate', () => {
-    //         seekBar.value = audio.currentTime;
-    //         durationDisplay.textContent = '';
-    //         currentTimeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
-    //         console.log(formatTime(audio.duration), formatTime(audio.currentTime))
-    //     });
-
-    //     audio.addEventListener('loadedmetadata', () => {
-    //         durationDisplay.textContent = '0:00 / '+formatTime(audio.duration);
-    //         seekBar.max = audio.duration;
-    //         console.log('loadedmetadata')
-    //     });
-
-    //     seekBar.addEventListener('input', () => {
-    //         audio.currentTime = seekBar.value;
-    //     });
-
-    //     audioPlayer.appendChild(playPauseBtn);
-    //     audioPlayer.appendChild(seekBar);
-    //     audioPlayer.appendChild(currentTimeDisplay);
-    //     audioPlayer.appendChild(durationDisplay);
-    //     audioPlayer.appendChild(audio);
-
-    //     function formatTime(seconds) {
-    //         const minutes = Math.floor(seconds / 60);
-    //         const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-    //         return `${minutes}:${secs}`;
-    //     }
-    // }
-    // const audio = document.getElementById('audio-player-audio');
-    // const playPauseBtn = document.getElementById('audio-player-play-pause');
-    // const seekBar = document.getElementById('audio-player-seek-bar');
-    // const currentTimeDisplay = document.getElementById('audio-player-current-time');
-    // const durationDisplay = document.getElementById('audio-player-duration');
     
-    // // Play or Pause audio
-    // playPauseBtn.addEventListener('click', () => {
-    //     if (audio.paused) {
-    //         audio.play();
-    //         playPauseBtn.textContent = 'Pause';
-    //     } else {
-    //         audio.pause();
-    //         playPauseBtn.textContent = 'Play';
-    //     }
-    // });
-    
-    // // Update seek bar and time display
-    // audio.addEventListener('timeupdate', () => {
-    //     seekBar.value = audio.currentTime;
-    //     currentTimeDisplay.textContent = formatTime(audio.currentTime);
-    // });
-    
-    // // Update duration and seek bar max value
-    // audio.addEventListener('loadedmetadata', () => {
-    //     durationDisplay.textContent = formatTime(audio.duration);
-    //     seekBar.max = audio.duration;
-    // });
-    
-    // // Seek audio
-    // seekBar.addEventListener('input', () => {
-    //     audio.currentTime = seekBar.value;
-    // });
-    
-    // // Format time in mm:ss
-    // function formatTime(seconds) {
-    //     const minutes = Math.floor(seconds / 60);
-    //     const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-    //     return `${minutes}:${secs}`;
-    // }
+    var videoElements = document.querySelectorAll('[id^="VideoTemplate-"]');
+    for(var i = 0; i < videoElements.length; i++){
+        var element = videoElements[i];
+        
+        var elementID = element.id.split("-");
+        var weapon = elementID[1];
+        var move = elementID[2];
+        var videoElement = document.createElement("video");
+        videoElement.classList.add("video");
+        
+        videoElement.onclick = function(){
+            this.controls = "true";
+            this.loop = "false";
+        }
+        
+        videoElement.src = 'https://rus1130.github.io/afbg/'+ weapon +'/'+ move +'.mp4';
+        videoElement.type = "video/mp4";
+        videoElement.title = "click to enable controls"
+        videoElement.muted = "true";
+        videoElement.loop = "true";
+        videoElement.autoplay = "true";
+        
+        element.appendChild(videoElement);
+        element.classList.remove("video-loading");
+    }
     </script>
