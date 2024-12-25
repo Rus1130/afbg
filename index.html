@@ -1,22 +1,4 @@
 <style>
-    .wds-button {
-        display: inline-flex;
-        font-family: inherit;
-        font-size: 12px;
-        font-weight: 600;
-        justify-content: center;
-        letter-spacing: .15px;
-        line-height: 16px;
-        margin: 0;
-        min-height: 18px;
-        padding: 7px 18px;
-        text-decoration: none;
-        text-transform: uppercase;
-        transition-duration: .3s;
-        transition-property: background-color, border-color, color;
-        vertical-align: top;
-        border-radius: 3px;
-    }
     :root {
         --button-gradient: linear-gradient(to right, forestgreen, lightgreen);
         --button-gradient-hover: linear-gradient(to right, lightgreen, forestgreen);
@@ -24,6 +6,7 @@
         --audio-player-gradient: linear-gradient(to right, lightgreen, forestgreen);
         --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
     }
+
 
     li:not(.toclevel-1) > ul:has(li) {
         margin-top: 0;
@@ -39,6 +22,7 @@
         width: 360px !important;
     }
 
+
     .video {
     width: 50%;
     height: auto;
@@ -48,7 +32,6 @@
     .wds-button {
         border: 1px black solid !important;
     }
-
     .button {
         position: relative;
         border: lightblue;
@@ -72,25 +55,32 @@
     .button:hover::before {
         opacity: 1;
     }
+
     span.button > a {
         width: 100%;
         height: 30px;
         line-height: 30px;
     }
 
-
-    .video-loading {
+    .video-loading, .video-error {
         font-family: rubik, helvetica, arial, sans-serif;
         width: 366.63px;
         height: 202.01px;
         border: 1px solid black;
     }
-    .video-loading::before {
+    .video-loading::before, .video-error::before {
         position: absolute;
         left: calc(366.63px / 2 - 11px);
-        content: "\000A\000A\000AVideo Loading...";
         white-space: pre;
+        
     }
+    .video-loading::before {
+        content: "\000A\000A\000AVideo Loading...";
+    }
+    .video-error::before {
+        content: "\000A\000A\000AVideo Error!";
+    }
+
 
     .grid {
         width: fit-content;
@@ -105,11 +95,11 @@
         box-sizing: border-box;
         white-space: nowrap;
     }
-
     .center {
         display: flex;
         justify-content: center;
     }
+
 
     .audio-player {
         display: flex;
@@ -144,6 +134,7 @@
         height: 5px; 
         background: var(--audio-player-track-gradient);
         border-radius: 5px;
+        outline: 1px solid #99932a;
     }
     .audio-player > input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -154,7 +145,7 @@
         cursor: pointer;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
         position:relative;
-        top: -6px;
+        top: -5.5px;
     }
     .audio-player > .time-display {
         padding-right: 10px;  
@@ -187,10 +178,11 @@
         margin-top: -12px;
     }
     .audio-loading::before {
-        content: "loading...";
+        content: "Audio loading...";
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
     }
-
-
 </style>
 <body>
     afbg moment<br>
@@ -223,6 +215,7 @@
     <div id="AudioTemplate-nebula"></div>
     <div id="AudioTemplate-deliberately wrong"></div>
     <div id="VideoTemplate-mod/shield-equip"></div>
+    <div id="VideoTemplate-mod/error"></div>
 </body>
 <script>
     var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
@@ -301,8 +294,12 @@
         videoElement.classList.add("video");
         
         videoElement.onclick = function(){
-            this.controls = "true";
-            this.loop = "false";
+            videoElement.controls = "true";
+            videoElement.loop = "false";
+        }
+
+        videoElement.onerror = function(){
+            element.classList.add("video-error");
         }
         
         videoElement.src = 'https://rus1130.github.io/afbg/'+ weapon +'/'+ move +'.mp4';
