@@ -1,0 +1,81 @@
+<style>
+    :root {
+    --color1: #64c49c;
+    --color2: #1fb3b3;
+    --button-gradient: linear-gradient(45deg, var(--color1), var(--color2));
+    --button-gradient-hover: linear-gradient(45deg, var(--color2), var(--color1));
+    
+    --audio-player-gradient: linear-gradient(to right, lightgreen, #2bbe2b);
+    --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
+}
+* {
+    font-family: rubik, helvetica, arial, sans-serif;
+}
+body {
+    background-color: #61a589;
+}
+.grid {
+    width: fit-content;
+}
+.grid > p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.grid > p > .wds-button {
+    flex: 1 1 calc(50% - 16px);
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+.wds-button {
+	border: 1px black solid !important;
+}
+.button {
+    position: relative;
+    border: lightblue;
+    background-image: var(--button-gradient);
+    z-index: 1;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 20px;
+    border: 1px solid #43866a;
+}
+.button::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: var(--button-gradient-hover);
+    z-index: -1;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    border-radius: 2px;
+}
+.button:hover::before {
+    opacity: 1;
+}
+span.button > a {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+</style>
+<body>
+<div class="grid center">
+    <p>
+<span class="button">[[:Category:Weapons|Weapons]]</span>
+<span class="button">[[Traits]]</span>
+<span class="button">[[Mechanics]]</span>
+<span class="button">[[Techniques]]</span>
+<span class="button">[[Music]]</span>
+<span class="button">[[Credits]]</span>
+    </p>
+
+</div>
+</body>
