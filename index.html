@@ -1,12 +1,15 @@
 <style>
-    :root {
-        --button-gradient: linear-gradient(to right, forestgreen, lightgreen);
-        --button-gradient-hover: linear-gradient(to right, lightgreen, forestgreen);
-        
-        --audio-player-gradient: linear-gradient(to right, lightgreen, forestgreen);
-        --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
-    }
-
+:root {
+    --color1: #64c49c;
+    --color2: #1fb3b3;
+    --color3: #a0e9c8;
+    --color4: #73f3be;
+    --button-gradient: linear-gradient(to top right, var(--color1), var(--color2));
+    --button-gradient-hover: linear-gradient(to bottom right, var(--color2), var(--color1));
+    
+    --audio-player-gradient: linear-gradient(to right, var(--color1), var(--color2));
+    --audio-player-track-gradient: linear-gradient(to right, var(--color3), var(--color4));
+}
 
     li:not(.toclevel-1) > ul:has(li) {
         margin-top: 0;
