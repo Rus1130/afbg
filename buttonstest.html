@@ -1,9 +1,9 @@
 <style>
-    :root {
+:root {
     --color1: #64c49c;
     --color2: #1fb3b3;
-    --button-gradient: linear-gradient(45deg, var(--color1), var(--color2));
-    --button-gradient-hover: linear-gradient(45deg, var(--color2), var(--color1));
+    --button-gradient: linear-gradient(to top right, var(--color1), var(--color2));
+    --button-gradient-hover: linear-gradient(to bottom right, var(--color2), var(--color1));
     
     --audio-player-gradient: linear-gradient(to right, lightgreen, #2bbe2b);
     --audio-player-track-gradient: linear-gradient(to right, #21D821, #A8E063);
@@ -22,7 +22,7 @@ body {
     flex-wrap: wrap;
     gap: 16px;
 }
-.grid > p > .wds-button {
+.grid > p > span {
     flex: 1 1 calc(50% - 16px);
     box-sizing: border-box;
     white-space: nowrap;
@@ -36,11 +36,10 @@ body {
 }
 .button {
     position: relative;
-    border: lightblue;
     background-image: var(--button-gradient);
     z-index: 1;
-    padding: 5px;
-    border-radius: 2px;
+    padding: 10px;
+    border-radius: 8px;
     font-size: 20px;
     border: 1px solid #43866a;
 }
@@ -53,9 +52,9 @@ body {
     left: 0;
     background-image: var(--button-gradient-hover);
     z-index: -1;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     opacity: 0;
-    border-radius: 2px;
+    border-radius: 8px;
 }
 .button:hover::before {
     opacity: 1;
@@ -69,12 +68,12 @@ span.button > a {
 <body>
 <div class="grid center">
     <p>
-<span class="button">[[:Category:Weapons|Weapons]]</span>
-<span class="button">[[Traits]]</span>
-<span class="button">[[Mechanics]]</span>
-<span class="button">[[Techniques]]</span>
-<span class="button">[[Music]]</span>
-<span class="button">[[Credits]]</span>
+<span class="button center">[[:Category:Weapons|Weapons]]</span>
+<span class="button center">[[Traits]]</span>
+<span class="button center">[[Mechanics]]</span>
+<span class="button center">[[Techniques]]</span>
+<span class="button center">[[Music]]</span>
+<span class="button center">[[Credits]]</span>
     </p>
 
 </div>
