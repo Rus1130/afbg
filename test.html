@@ -1,0 +1,322 @@
+<style>
+:root {
+    --color1: #64c49c;
+    --color2: #1fb3b3;
+    --color3: #a0e9c8;
+    --color4: #73f3be;
+    --button-gradient: linear-gradient(to top right, var(--color1), var(--color2));
+    --button-gradient-hover: linear-gradient(to bottom right, var(--color2), var(--color1));
+    
+    --audio-player-gradient: linear-gradient(to right, var(--color1), var(--color2));
+    --audio-player-track-gradient: linear-gradient(to right, var(--color3), var(--color4));
+}
+
+    li:not(.toclevel-1) > ul:has(li) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    div#recent-images-module {
+        display: none;
+    }
+    span > a {
+        text-decoration: none !important;
+    }
+    audio {
+        width: 360px !important;
+    }
+
+
+    .video {
+    width: 50%;
+    height: auto;
+    max-width: 100%;
+    }
+
+    .wds-button {
+        border: 1px black solid !important;
+    }
+    .button {
+        position: relative;
+        border: lightblue;
+        background-image: var(--button-gradient);
+        z-index: 1;
+        padding: 0;
+    }
+    .button::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: var(--button-gradient-hover);
+        z-index: -1;
+        transition: opacity 0.5s linear;
+        opacity: 0;
+        border-radius: 2px;
+    }
+    .button:hover::before {
+        opacity: 1;
+    }
+
+    span.button > a {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .video-loading, .video-error {
+        font-family: rubik, helvetica, arial, sans-serif;
+        width: 366.63px;
+        height: 202.01px;
+        border: 1px solid black;
+    }
+    .video-loading::before, .video-error::before {
+        position: absolute;
+        left: calc(366.63px / 2 - 11px);
+        white-space: pre;
+        
+    }
+    .video-loading::before {
+        content: "\000A\000A\000AVideo Loading...";
+    }
+    .video-error::before {
+        content: "\000A\000A\000AVideo Error!";
+    }
+
+
+    .grid {
+        width: fit-content;
+    }
+    .grid > p {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .grid > p > .wds-button {
+        flex: 1 1 calc(50% - 16px);
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .audio-player {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-image: var(--audio-player-gradient);
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 30px;
+        width: 300px;
+        margin-left: 23px;
+        margin-top: -12px;
+    }
+    .audio-player > button {
+        background: transparent;
+        color: black;
+        border: none;
+        width: 35px;
+        height: 35px;
+        padding: 0;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: monospace;
+    }
+    .audio-player > button:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    .audio-player > input[type="range"] {
+        flex: 1;
+    }
+    .audio-player > input[type="range"]::-webkit-slider-runnable-track {
+        height: 5px; 
+        background: var(--audio-player-track-gradient);
+        border-radius: 5px;
+        outline: 1px solid #99932a;
+    }
+    .audio-player > input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        position:relative;
+        top: -5.5px;
+    }
+    .audio-player > .time-display {
+        padding-right: 10px;  
+    }
+    .audio-player > button > span > img.play {
+        position: relative;
+        left: 2px;
+        width: 50%;
+        height: 90%;
+    }
+    .audio-player > button > span > img.pause {
+        position: relative;
+        width: 40%;
+        height: 80%;
+    }
+    .audio-player > span {
+        font-family: monospace;
+    }
+
+    .audio-loading {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-image: var(--audio-player-gradient);
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 30px;
+        width: 300px;
+        margin-left: 23px;
+        margin-top: -12px;
+    }
+    .audio-loading::before {
+        content: "Audio loading...";
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+    }
+</style>
+<body>
+    afbg moment<br>
+    <div class="grid center">
+        <p>
+            <span class="wds-button button">
+                <a href="google.com">[[:Category:Weapons|Weapons]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[:Category:Dev Weapons|Dev Weapons]]</a>
+            </span>
+            
+            <span class="wds-button button">
+                <a href="google.com">[[Techniques]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[Mechanics]]</a>
+            </span>
+        
+            <span class="wds-button button">
+                <a href="google.com">[[Move Types]]</a>
+            </span>
+            <span class="wds-button button">
+                <a href="google.com">[[Credits]]</a>
+            </span>
+        </p>
+    </div>
+    <div id="AudioTemplate-titansedge"></div>
+    <div id="AudioTemplate-waterbrawler"></div>
+    <div id="AudioTemplate-nebula"></div>
+    <div id="AudioTemplate-deliberately wrong"></div>
+    <div id="VideoTemplate-mod/shield-equip"></div>
+    <div id="VideoTemplate-mod/error"></div>
+</body>
+<script>
+    var parentDiv = document.querySelector('.mw-parser-output');
+
+    // video
+    var videoElements = document.querySelectorAll('[id^="VideoTemplate-"]');
+    for(var i = 0; i < videoElements.length; i++){
+        var element = videoElements[i];
+        
+        var elementID = element.id.split("-");
+        var weapon = elementID[1];
+        var move = elementID[2];
+        var videoElement = document.createElement("video");
+        videoElement.classList.add("video");
+        
+        (function(videoElement, element) {
+            videoElement.onclick = function () {
+                videoElement.muted = !videoElement.muted;
+            };
+            videoElement.onerror = function () {
+                element.classList.add("video-error");
+            };
+        })(videoElement, element);
+        
+        videoElement.src = 'https://rus1130.github.io/afbg/'+ weapon +'/'+ move +'.mp4';
+        videoElement.type = "video/mp4";
+        videoElement.title = "click to toggle audio"
+        videoElement.muted = "true";
+        videoElement.loop = "true";
+        videoElement.autoplay = "true";
+        
+        element.appendChild(videoElement);
+        element.classList.remove("video-loading");
+    }
+
+    // audio
+    var audioPlayers = document.querySelectorAll('[id^="AudioTemplate-"]');
+    audioPlayers.forEach(function(element){
+        var audioPlayer = document.createElement('div');
+        audioPlayer.classList.add('audio-player');
+        element.classList.remove("audio-loading");
+
+        var audio = document.createElement('audio');
+        audio.src = 'https://rus1130.github.io/afbg/audio/' + element.getAttribute('id').replace('AudioTemplate-', '') + ".mp3";
+        audio.volume = 0.2;
+
+        var playPauseBtn = document.createElement('button');
+        var seekBar = document.createElement('input');
+        var timeDisplay = document.createElement('span');
+
+        timeDisplay.textContent = "0:00 / ?:??";
+
+        seekBar.type = 'range';
+        seekBar.value = 0;
+
+        timeDisplay.classList.add("time-display");
+
+        playPauseBtn.innerHTML = '<span><img class="play" src="https://rus1130.github.io/afbg/audio/play.png"/></span>';
+
+        playPauseBtn.addEventListener('click', function(){
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = '<span><img class="pause" src="https://rus1130.github.io/afbg/audio/pause.png"/></span>';
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<span><img class="play" src="https://rus1130.github.io/afbg/audio/play.png"/></span>';
+            }
+        });
+
+        audio.addEventListener('timeupdate', function(){
+            seekBar.value = audio.currentTime;
+            timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+        });
+
+        audio.addEventListener('loadedmetadata', function(){
+            timeDisplay.textContent = '0:00 / '+formatTime(audio.duration);
+            seekBar.max = audio.duration;
+        });
+        
+        audio.addEventListener("error", function(){
+            audioPlayer.innerHTML = "<span style='height:35px; width: 100%; text-align:center; line-height:35px;'>Error loading audio</span>"
+        }); 
+
+        seekBar.addEventListener('input',function(){
+            audio.currentTime = seekBar.value;
+        });
+
+        audioPlayer.appendChild(playPauseBtn);
+        audioPlayer.appendChild(seekBar);
+        audioPlayer.appendChild(timeDisplay);
+        audioPlayer.appendChild(audio);
+
+        function formatTime(seconds) {
+            var minutes = Math.floor(seconds / 60);
+            var secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return minutes + ":" + secs;
+        }
+
+        element.appendChild(audioPlayer);
+    })
+</script>
