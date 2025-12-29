@@ -1,3 +1,33 @@
+<style>
+    .weapon-table {
+        width: 25%;
+        border-collapse: collapse;
+        font-family: system-ui, sans-serif;
+    }
+
+    .weapon-table th,
+    .weapon-table td {
+        padding: 7px 9px;
+        text-align: left;
+    }
+
+    .weapon-table thead {
+        border-bottom: 2px solid #444;
+    }
+
+    .weapon-table tbody tr {
+        border-bottom: 1px solid #333;
+    }
+
+    .weapon-table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .weapon-table th {
+        font-weight: 600;
+        opacity: 0.85;
+    }
+</style>
 <body>
     <h1>How to add video</h1>
     <ol>
@@ -18,4 +48,80 @@
             <code>{{Video|name=kb|move=1}}</code>
         </li>
     </ol>
+
+    <table class="weapon-table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Weapon</th>
+                <th>Base</th>
+                <th>Ultimate Count</th>
+                <th>Variant Count</th>
+                <th>Finisher Count</th>
+            </tr>
+        </thead>
+        <tbody id="weaponBody"></tbody>
+    </table>
+    <!-- <ul>
+        <li>rapier - celestine 4/4 u0/4</li>
+        <li>db - deathbringe 0/4 u0/4</li>
+        <li>staff - divinity 4/4 u0/1</li>
+        <li>sb - hail 4/4 u0/4</li>
+        <li>ff - hellfire 4/4 u4/4</li>
+        <li>imp - imperial 0/4 u0/4</li>
+        <li>gs - infernus 4/4 v1/1 f1/1 u0/4</li>
+        <li>kb - kickboxer 4/4 u0/1</li>
+        <li>lb - lightbringer 0/4 u0/4</li>
+        <li>lumi - lumivolt 0/4</li>
+        <li>harp - lyra 4/4 u1/1</li>
+        <li>neb - nebula 4/4 u0/4</li>
+        <li>shield - prototype-a71 4/4 u0/1</li>
+        <li>katana - prototype-k23 0/4 u0/4</li>
+        <li>dag - sangria 0/4 u0/1</li>
+        <li>bs - sanguine 0/4 u0/4</li>
+        <li>steel - steel 4/4 u4/4</li>
+        <li>tempest - tempest 0/4 u0/1</li>
+        <li>te - titan's edge 4/4 u0/4</li>
+        <li>wb - water brawler 4/4 u0/4</li>
+        <li>sl - wraith 0/4 u0/4</li>
+    </ul> -->
 </body>
+<script>
+const weapons = [
+    { code: "rapier",  name: "celestine",      base: "4/4", u: "0/4" },
+    { code: "db",      name: "deathbringer",   base: "0/4", u: "0/4" },
+    { code: "staff",   name: "divinity",       base: "4/4", u: "0/1" },
+    { code: "sb",      name: "hail",           base: "4/4", u: "0/4" },
+    { code: "ff",      name: "hellfire",       base: "4/4", u: "4/4" },
+    { code: "imp",     name: "imperial",       base: "0/4", u: "0/4" },
+    { code: "gs",      name: "infernus",       base: "4/4", u: "0/4", v: "1/1", f: "2/2" },
+    { code: "kb",      name: "kickboxer",      base: "4/4", u: "0/1", v: "1/1" },
+    { code: "lb",      name: "lightbringer",   base: "0/4", u: "0/4" },
+    { code: "lumi",    name: "lumivolt",       base: "0/4" },
+    { code: "harp",    name: "lyra",           base: "4/4", u: "1/1" },
+    { code: "neb",     name: "nebula",         base: "4/4", u: "0/4" },
+    { code: "shield",  name: "prototype-a71",  base: "4/4", u: "0/1" },
+    { code: "katana",  name: "prototype-k23",  base: "0/4", u: "0/4" , f: "0/1"},
+    { code: "dag",     name: "sangria",        base: "0/4", u: "0/1" },
+    { code: "bs",      name: "sanguine",       base: "0/4", u: "0/4" },
+    { code: "steel",   name: "steel",          base: "4/4", u: "4/4" },
+    { code: "wind",    name: "wind",           base: "0/4", u: "0/1" },
+    { code: "te",      name: "titan's edge",   base: "4/4", u: "0/4" },
+    { code: "wb",      name: "water brawler",  base: "4/4", u: "0/4" },
+    { code: "sl",      name: "wraith",         base: "0/4", u: "0/4" }
+];
+
+const tbody = document.getElementById("weaponBody");
+
+weapons.forEach(w => {
+    const row = document.createElement("tr");
+
+    ["code", "name", "base", "u", "v", "f"].forEach(key => {
+        const cell = document.createElement("td");
+        cell.textContent = w[key] ?? "❌";
+        row.appendChild(cell);
+    });
+
+    tbody.appendChild(row);
+});
+</script>
